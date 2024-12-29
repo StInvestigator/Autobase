@@ -1,0 +1,10 @@
+Central Hub
+North Station
+West Depot
+East Terminal
+South Warehouse
+Main Logistics Center
+City Distribution Point
+Global Freight Dock
+Regional Transit Yard
+Industrial Cargo Facility

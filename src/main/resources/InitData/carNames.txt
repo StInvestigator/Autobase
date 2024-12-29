@@ -1,0 +1,10 @@
+RoadMaster
+CargoKing
+HeavyHauler
+LoadRunner
+TransitTitan
+FreightMover
+TrailBlazer
+PowerLiner
+MaxLoad
+SteelCarrier

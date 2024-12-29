@@ -1,0 +1,36 @@
+spring:
+#  jpa:
+#    open-in-view: true
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        format_sql: true
+  application:
+    name: TickersSystem
+  datasource:
+    url: jdbc:postgresql://localhost:5437/autobase
+    username: sa
+    password: admin
+    driverClassName: org.postgresql.Driver
+
+
+  flyway:
+    enabled: true
+    user: sa
+    password: admin
+    schemas: public
+    url: jdbc:postgresql://localhost:5437/autobase
+
+data:
+  names: "src/main/resources/InitData/names.txt"
+  surnames: "src/main/resources/InitData/surnames.txt"
+  carNames: "src/main/resources/InitData/carNames.txt"
+  destinations: "src/main/resources/InitData/destinations.txt"
+  goodsTypes: "src/main/resources/InitData/goodsTypes.txt"
+  logs: "src/main/resources/logs/"
+
+#logging:
+#  level:
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

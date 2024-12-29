@@ -1,0 +1,10 @@
+Books
+Stationery
+Footwear
+Furniture
+Clothing
+Cosmetics
+Toys
+Groceries
+Electronics
+Jewelry
