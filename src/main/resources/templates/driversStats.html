@@ -22,7 +22,7 @@
     <div th:each="driver : ${drivers}">
         <h3 th:text="${driver.fullName} + ' stats:'"></h3>
         <p th:text="'Total weight transported: ' + ${driver.transported} + ' ton(s)'"></p>
-        <p th:utext="'Total money gained: ' + ${driver.balance} + '$ ' + ${driver.isMaxBalance()?'(max)':''}"></p>
+        <p th:text="'Total money gained: ' + ${driver.balance} + '$ ' + ${driver.isMaxBalance()?'(max)':''}"></p>
         <hr>
     </div>
 </div>

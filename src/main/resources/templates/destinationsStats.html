@@ -20,7 +20,7 @@
 <div class="mx-3">
     <h1 th:if="${destinations.size()==0}">There is no destination points yet</h1>
     <div th:each="destination : ${destinations}">
-        <h3 th:utext="'Total weight transefed to ' + ${destination.name} + ' is ' + ${destination.weight} + ' ton(s)'"></h3>
+        <h3 th:text="'Total weight transefed to ' + ${destination.name} + ' is ' + ${destination.weight} + ' ton(s)'"></h3>
         <hr>
     </div>
 </div>

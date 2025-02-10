@@ -27,10 +27,10 @@
                 <p class="my-0" th:text="'Days remaining: ' + ${trip.daysRemaining}">...</p>
                 <p class="my-0" th:text="'Good type: ' + ${trip.request.goodsType.name}">...</p>
                 <p class="my-0"
-                   th:utext="'Driver: ' + ${trip.driver.name + ' ' + trip.driver.surname}">
+                   th:text="'Driver: ' + ${trip.driver.name + ' ' + trip.driver.surname}">
                     ...</p>
                 <p class="my-0"
-                   th:utext="'Car: ' + ${trip.car.name}">
+                   th:text="'Car: ' + ${trip.car.name}">
                     ...</p>
                 <div class="badge bg-success text-white my-2" style="margin: 0 auto; display:block; width: 80px"
                      th:text="${trip.request.payment} + '$'">...
