@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Requests Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<style>
+    span{
+        font-weight: normal;
+    }
+</style>
+
+<body>
+<th:block th:include="/menu"></th:block>
+
+<div class="mx-3">
+    <h1 th:if="${logs.size()==0}">There is no logs yet</h1>
+    <div th:each="log : ${logs}">
+        <h3 th:utext="${log}"></h3>
+        <hr>
+    </div>
+</div>
+</body>
+</html>

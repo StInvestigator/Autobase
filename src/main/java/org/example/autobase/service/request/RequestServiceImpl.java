@@ -79,4 +79,9 @@ public class RequestServiceImpl implements RequestService {
         }
         return requestRepository.saveAll(requests);
     }
+
+    @Override
+    public Request findById(Long id) {
+        return requestRepository.findById(id).orElse(null);
+    }
 }

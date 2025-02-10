@@ -1,5 +1,6 @@
 package org.example.autobase.service.trip;
 
+import org.example.autobase.controller.LogController;
 import org.example.autobase.entity.*;
 import org.example.autobase.repository.TripRepository;
 import org.example.autobase.service.car.CarService;
@@ -83,23 +84,18 @@ public class TripServiceImpl implements TripService {
         List<CompletedTrip> completedTrips = new ArrayList<>();
         carService.setBrokenAfterDayRiding();
         for (Trip failedTrip : tripRepository.findAllByCar_IsBroken(true)) {
-            System.out.println("\nCar broke down!" +
-                    "\nTrip to " + failedTrip.getRequest().getDestinationPoint().getName() + " has been failed..." +
-                    "\nDriver " + failedTrip.getDriver().getName() + " " + failedTrip.getDriver().getSurname() + " is now free" +
-                    "\nCar \"" + failedTrip.getCar().getName() + "\" is repaired and free");
+            LogController.getLogs().add("Car broke down!" +
+                    "<br><span>Trip to " + failedTrip.getRequest().getDestinationPoint().getName() + " has been failed..." +
+                    "<br>Driver " + failedTrip.getDriver().getName() + " " + failedTrip.getDriver().getSurname() + " is now free" +
+                    "<br>Car \"" + failedTrip.getCar().getName() + "\" is repaired and free</span>");
             tripFailed(failedTrip);
-            try {
-                sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
         }
         for (Trip trip : tripRepository.findAll()) {
             trip.setDaysRemaining(trip.getDaysRemaining() - 1);
             if (trip.getDaysRemaining() <= 0) {
-                System.out.println("\nTrip to " + trip.getRequest().getDestinationPoint().getName() + " has been successfully completed!" +
-                        "\nDriver " + trip.getDriver().getName() + " " + trip.getDriver().getSurname() + " got the payment and now free" +
-                        "\nCar \"" + trip.getCar().getName() + "\" is now free");
+                LogController.getLogs().add("Trip to " + trip.getRequest().getDestinationPoint().getName() + " has been successfully completed!" +
+                        "<br><span>Driver " + trip.getDriver().getName() + " " + trip.getDriver().getSurname() + " got the payment and now free" +
+                        "<br>Car \"" + trip.getCar().getName() + "\" is now free</span>");
                 completedTrips.add(tripCompleted(trip));
                 try {
                     sleep(500);
@@ -108,16 +104,8 @@ public class TripServiceImpl implements TripService {
                 }
                 continue;
             }
-            System.out.println("\nOngoing trip to " + trip.getRequest().getDestinationPoint().getName() +
-                    ":\nDelivering type: " + trip.getRequest().getGoodsType().getName() +
-                    "\nDays remaining: " + trip.getDaysRemaining() +
-                    "\nDriver: " + trip.getDriver().getName() + " " + trip.getDriver().getSurname() +
-                    "\nCar: \"" + trip.getCar().getName() + "\"");
-            try {
-                sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            LogController.getLogs().add("Ongoing trip to " + trip.getRequest().getDestinationPoint().getName() +
+                    "<br><span>Days remaining: " + trip.getDaysRemaining() + "</span>");
         }
         return completedTrips;
     }

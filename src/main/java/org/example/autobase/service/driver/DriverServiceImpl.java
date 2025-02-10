@@ -26,6 +26,11 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
+    public Driver findById(Long id) {
+        return driverRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public List<Driver> findAll() {
         return driverRepository.findAll();
     }
@@ -48,7 +53,22 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
+    public boolean isDriverWithExperienceAvailable(Integer experience) {
+        return !getFreeDriversWithExperienceGreaterThan(experience).isEmpty();
+    }
+
+    @Override
     public List<Driver> findDriversWithMaxBalance() {
         return driverRepository.findDriversWithMaxBalance();
+    }
+
+    @Override
+    public List<Driver> findAllFreeDrivers() {
+        return driverRepository.findAllByIsFree(true);
+    }
+
+    @Override
+    public BigDecimal getMaxBalance() {
+        return driverRepository.findMaxBalance();
     }
 }

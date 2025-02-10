@@ -6,13 +6,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
 @Transactional
 public interface DriverRepository extends JpaRepository<Driver, Long> {
     List<Driver> findAllByExperienceGreaterThanEqualAndIsFreeOrderByExperienceAsc(Integer experience, Boolean isFree);
+    List<Driver> findAllByIsFree(Boolean isFree);
 
     @Query(value = "SELECT d FROM Driver d WHERE d.balance = (select max(d2.balance) from Driver d2)")
     List<Driver> findDriversWithMaxBalance();
+
+    @Query(value = "select max(d.balance) from Driver d")
+    BigDecimal findMaxBalance();
 }

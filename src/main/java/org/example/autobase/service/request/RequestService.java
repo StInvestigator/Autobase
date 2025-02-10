@@ -11,4 +11,5 @@ public interface RequestService {
     List<Request> findAllNotTaken();
     void deleteAll();
     List<Request> getNextDayRandomRequests();
+    Request findById(Long id);
 }

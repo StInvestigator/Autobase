@@ -12,4 +12,5 @@ public interface CarService {
     void deleteAll();
     void setBrokenAfterDayRiding();
     Car findMostEfficientFreeCar(BigDecimal weight);
+    boolean isCarForWeightAvailable(BigDecimal weight);
 }

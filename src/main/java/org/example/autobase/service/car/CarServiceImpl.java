@@ -42,7 +42,7 @@ public class CarServiceImpl implements CarService {
         List<Car> brokenCars = new ArrayList<>();
         Random random = new Random();
         for (Car car : carRepository.findAllByIsFree(false)) {
-            if (random.nextInt(0, 100) == 1) {
+            if (random.nextInt(0, 50) == 1) {
                 car.setIsBroken(true);
                 brokenCars.add(car);
             }
@@ -53,5 +53,10 @@ public class CarServiceImpl implements CarService {
     @Override
     public Car findMostEfficientFreeCar(BigDecimal weight) {
         return carRepository.findFirstByMaxWeightIsGreaterThanEqualAndIsFreeOrderByMaxWeightAsc(weight, true);
+    }
+
+    @Override
+    public boolean isCarForWeightAvailable(BigDecimal weight) {
+        return findMostEfficientFreeCar(weight)!=null;
     }
 }

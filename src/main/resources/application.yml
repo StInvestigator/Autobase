@@ -10,15 +10,15 @@ spring:
     name: TickersSystem
   datasource:
     url: jdbc:postgresql://localhost:5437/autobase
-    username: sa
-    password: admin
+    username: postgres
+    password: sa
     driverClassName: org.postgresql.Driver
 
 
   flyway:
     enabled: true
-    user: sa
-    password: admin
+    user: postgres
+    password: sa
     schemas: public
     url: jdbc:postgresql://localhost:5437/autobase
 
