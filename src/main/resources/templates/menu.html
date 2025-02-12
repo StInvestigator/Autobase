@@ -3,23 +3,29 @@
         <div class="container-fluid">
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item mx-1">
-                        <a class="nav-link text-dark" th:href="@{/requests}">Requests Management</a>
+                    <li class="nav-item mx-1" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
+                        <a class="nav-link text-dark" th:href="@{/requests}">Requests</a>
                     </li>
-                    <li class="nav-item mx-1">
+                    <li class="nav-item mx-1" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                         <a class="nav-link text-dark" th:href="@{/logs}">Today logs</a>
                     </li>
-                    <li class="nav-item mx-1">
+                    <li class="nav-item mx-1" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                         <a class="nav-link text-dark" th:href="@{/trips}">Ongoing trips</a>
                     </li>
-                    <li class="nav-item mx-1">
+                    <li class="nav-item mx-1" th:if="${#request.isUserInRole('ROLE_USER')}">
                         <a class="nav-link text-dark" th:href="@{/stats/destinations}">Destination Stats</a>
                     </li>
-                    <li class="nav-item mx-1">
+                    <li class="nav-item mx-1" th:if="${#request.isUserInRole('ROLE_USER')}">
                         <a class="nav-link text-dark" th:href="@{/stats/drivers}">Drivers Stats</a>
                     </li>
+                    <li class="nav-item mx-1" th:if="${#request.userPrincipal != null}">
+                        <a class="nav-link" style="color: darkred" th:href="@{/logout}">Logout</a>
+                    </li>
+                    <li class="nav-item mx-1" th:if="${#request.userPrincipal == null}">
+                        <a class="nav-link text-dark" th:href="@{/login}">Login</a>
+                    </li>
                 </ul>
-                <form class="d-flex" method="POST" th:action="@{/Vdate/nextDay}"
+                <form class="d-flex" method="POST" th:action="@{/Vdate/nextDay}" th:if="${#request.isUserInRole('ROLE_ADMIN')}"
                       th:with="VirtualDateStaticService=${T(org.example.autobase.service.VirtualDateStaticService)}">
                     <p th:text="'Today is ' + ${VirtualDateStaticService.getCurrentVirtualLocalDate()}" class="mb-0 mt-1 nav-link text-dark">...</p>
                     <button class="btn btn-outline-success p-2 my-1" type="submit">To Tomorrow
